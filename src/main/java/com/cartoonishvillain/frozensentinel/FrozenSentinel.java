@@ -14,11 +14,13 @@ import org.apache.logging.log4j.Logger;
 public class FrozenSentinel {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final String MODID = "frozensentinel";
+    public static final String MOD_ID = "frozensentinel";
 
     public FrozenSentinel() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+
+        Register.init();
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
