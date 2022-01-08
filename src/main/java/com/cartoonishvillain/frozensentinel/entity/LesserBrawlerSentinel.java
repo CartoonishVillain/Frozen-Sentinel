@@ -25,7 +25,7 @@ public class LesserBrawlerSentinel extends GenericSentinel {
     public static AttributeSupplier.Builder customAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.35D)
+                .add(Attributes.MOVEMENT_SPEED, 0.2825D)
                 .add(Attributes.ATTACK_DAMAGE, 2D)
                 .add(Attributes.ATTACK_KNOCKBACK, 3.0D);
     }

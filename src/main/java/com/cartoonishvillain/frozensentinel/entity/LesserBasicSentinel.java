@@ -1,7 +1,10 @@
 package com.cartoonishvillain.frozensentinel.entity;
 
+import com.cartoonishvillain.frozensentinel.Register;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -10,8 +13,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Snowball;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+
+import java.awt.*;
 
 public class LesserBasicSentinel extends GenericSentinel implements RangedAttackMob {
 
@@ -30,7 +37,7 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
     public static AttributeSupplier.Builder customAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.125D)
+                .add(Attributes.MOVEMENT_SPEED, 0.2825D)
                 .add(Attributes.ATTACK_DAMAGE, 2D);
     }
 
@@ -47,5 +54,29 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
         snowballentity.shoot(d1, d2 + (double)f, d3, 1.6F, 8.0F);
         this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(snowballentity);
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player p_27584_, InteractionHand p_27585_) {
+        Item item = p_27584_.getItemInHand(p_27585_).getItem();
+        TextComponent nameComponent = (TextComponent) this.getCustomName();
+        String name;
+        if(nameComponent != null) {name = nameComponent.getText();}
+        else {name = "";}
+        if(this.getOwner() instanceof Player && !level.isClientSide)
+        if(item.equals(Register.GUNNERTAG.get())){
+            this.transferData(new LesserGunnerSentinel(Register.LESSERGUNNERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+        } else if(item.equals(Register.STABBERTAG.get())){
+            this.transferData(new LesserStabberSentinel(Register.LESSERSTABBERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+        } else if(item.equals(Register.SNOWBALLERTAG.get())){
+            this.transferData(new LesserSnowballerSentinel(Register.LESSERSNOWBALLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+        } else if(item.equals(Register.GIFTERTAG.get())){
+            this.transferData(new LesserGifterSentinel(Register.LESSERGIFTERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+        } else if(item.equals(Register.ZAPPERTAG.get())){
+            this.transferData(new LesserZapperSentinel(Register.LESSERZAPPERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+        } else if(item.equals(Register.BRAWLERTAG.get())){
+            this.transferData(new LesserBrawlerSentinel(Register.LESSERBRAWLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+        }
+        return super.mobInteract(p_27584_, p_27585_);
     }
 }

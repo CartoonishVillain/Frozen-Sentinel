@@ -34,7 +34,7 @@ public class LesserStabberSentinel extends GenericSentinel {
     public static AttributeSupplier.Builder customAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.35D)
+                .add(Attributes.MOVEMENT_SPEED, 0.2825D)
                 .add(Attributes.ATTACK_DAMAGE, 2D);
     }
 
