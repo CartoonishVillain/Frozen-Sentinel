@@ -1,5 +1,6 @@
 package com.cartoonishvillain.frozensentinel.client.renderers;
 
+import com.cartoonishvillain.frozensentinel.client.layers.LesserBasicSentinelLayer;
 import com.cartoonishvillain.frozensentinel.entity.LesserBasicSentinel;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -12,6 +13,7 @@ public class LesserBasicSentinelRenderer extends MobRenderer<LesserBasicSentinel
 
     public LesserBasicSentinelRenderer(EntityRendererProvider.Context p_174304_) {
         super(p_174304_, new SnowGolemModel<>(p_174304_.bakeLayer(ModelLayers.SNOW_GOLEM)), 0.5F);
+        this.addLayer(new LesserBasicSentinelLayer(this));
     }
 
 

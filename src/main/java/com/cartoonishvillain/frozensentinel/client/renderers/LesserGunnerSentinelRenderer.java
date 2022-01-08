@@ -4,6 +4,7 @@ import com.cartoonishvillain.coldsnaphorde.client.RenderManager;
 import com.cartoonishvillain.coldsnaphorde.client.models.standardmodel.ColdSnapGunnerModel;
 import com.cartoonishvillain.coldsnaphorde.client.models.standardmodel.ColdSnapStabberModel;
 import com.cartoonishvillain.coldsnaphorde.entities.mobs.basemob.ColdSnapGunner;
+import com.cartoonishvillain.frozensentinel.client.layers.LesserGunnerSentinelLayer;
 import com.cartoonishvillain.frozensentinel.entity.LesserGunnerSentinel;
 import com.cartoonishvillain.frozensentinel.entity.LesserStabberSentinel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -16,6 +17,7 @@ public class LesserGunnerSentinelRenderer extends MobRenderer<LesserGunnerSentin
 
     public LesserGunnerSentinelRenderer(EntityRendererProvider.Context p_174304_) {
         super(p_174304_, new ColdSnapGunnerModel<LesserGunnerSentinel>(p_174304_.bakeLayer(RenderManager.COLDSNAPGUNNER)), 0.5F);
+        this.addLayer(new LesserGunnerSentinelLayer(this));
     }
 
 

@@ -2,6 +2,7 @@ package com.cartoonishvillain.frozensentinel.client.renderers;
 
 import com.cartoonishvillain.coldsnaphorde.client.RenderManager;
 import com.cartoonishvillain.coldsnaphorde.client.models.standardmodel.ColdSnapBrawlerModel;
+import com.cartoonishvillain.frozensentinel.client.layers.LesserBrawlerSentinelLayer;
 import com.cartoonishvillain.frozensentinel.entity.LesserBrawlerSentinel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -13,6 +14,7 @@ public class LesserBrawlerSentinelRenderer extends MobRenderer<LesserBrawlerSent
 
     public LesserBrawlerSentinelRenderer(EntityRendererProvider.Context p_174304_) {
         super(p_174304_, new ColdSnapBrawlerModel<LesserBrawlerSentinel>(p_174304_.bakeLayer(RenderManager.COLDSNAPBRAWLER)), 0.5F);
+        this.addLayer(new LesserBrawlerSentinelLayer(this));
     }
 
 

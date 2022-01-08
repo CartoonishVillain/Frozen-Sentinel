@@ -49,6 +49,7 @@ public class GenericSentinel extends TamableAnimal {
     }
 
     public boolean isAttackingFriend(LivingEntity target) {
+        if (target == null) return false;
         return this.getOwner() != null && !(target.equals(getOwner())) && target instanceof TamableAnimal && this.getOwner().equals(((TamableAnimal) target).getOwner());
     }
 
@@ -56,7 +57,7 @@ public class GenericSentinel extends TamableAnimal {
     public InteractionResult mobInteract(Player p_27584_, InteractionHand p_27585_) {
         if(!isTame() && p_27585_.equals(InteractionHand.MAIN_HAND) && !p_27584_.level.isClientSide) {
             tame(p_27584_);
-            p_27584_.sendMessage(new TextComponent("[Summoned Snowman] I am tamed now."), p_27584_.getUUID());
+            p_27584_.sendMessage(new TextComponent("Summoned snowman tamed."), p_27584_.getUUID());
         }
 
         if(p_27585_.equals(InteractionHand.MAIN_HAND) && !p_27584_.level.isClientSide){

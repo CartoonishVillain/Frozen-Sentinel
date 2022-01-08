@@ -2,6 +2,7 @@ package com.cartoonishvillain.frozensentinel.client.renderers;
 
 import com.cartoonishvillain.coldsnaphorde.client.RenderManager;
 import com.cartoonishvillain.coldsnaphorde.client.models.standardmodel.ColdSnapStabberModel;
+import com.cartoonishvillain.frozensentinel.client.layers.LesserStabberSentinelLayer;
 import com.cartoonishvillain.frozensentinel.entity.LesserBasicSentinel;
 import com.cartoonishvillain.frozensentinel.entity.LesserStabberSentinel;
 import net.minecraft.client.model.SnowGolemModel;
@@ -16,6 +17,7 @@ public class LesserStabberSentinelRenderer extends MobRenderer<LesserStabberSent
 
     public LesserStabberSentinelRenderer(EntityRendererProvider.Context p_174304_) {
         super(p_174304_, new ColdSnapStabberModel<LesserStabberSentinel>(p_174304_.bakeLayer(RenderManager.COLDSNAPSTABBER)), 0.5F);
+        this.addLayer(new LesserStabberSentinelLayer(this));
     }
 
 

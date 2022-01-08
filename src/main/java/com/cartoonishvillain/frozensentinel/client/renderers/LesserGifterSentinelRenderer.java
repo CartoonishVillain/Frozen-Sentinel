@@ -2,6 +2,7 @@ package com.cartoonishvillain.frozensentinel.client.renderers;
 
 import com.cartoonishvillain.coldsnaphorde.client.RenderManager;
 import com.cartoonishvillain.coldsnaphorde.client.models.standardmodel.ColdSnapGifterModel;
+import com.cartoonishvillain.frozensentinel.client.layers.LesserGifterSentinelLayer;
 import com.cartoonishvillain.frozensentinel.entity.LesserGifterSentinel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -13,6 +14,7 @@ public class LesserGifterSentinelRenderer extends MobRenderer<LesserGifterSentin
 
     public LesserGifterSentinelRenderer(EntityRendererProvider.Context p_174304_) {
         super(p_174304_, new ColdSnapGifterModel<LesserGifterSentinel>(p_174304_.bakeLayer(RenderManager.COLDSNAPGIFTER)), 0.5F);
+        this.addLayer(new LesserGifterSentinelLayer(this));
     }
 
 
