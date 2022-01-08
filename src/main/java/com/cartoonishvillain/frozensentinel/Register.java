@@ -23,13 +23,14 @@ public class Register {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<Item> LESSERANIMATIONCORE = ITEMS.register("lesseranimationcore", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.lesseranimationcore").withStyle(ChatFormatting.BLUE)));
-    public static final RegistryObject<Item> GUNNERTAG = ITEMS.register("gunnertag", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.gunnertag").withStyle(ChatFormatting.BLUE)));
-    public static final RegistryObject<Item> STABBERTAG = ITEMS.register("stabbertag", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.stabbertag").withStyle(ChatFormatting.BLUE)));
-    public static final RegistryObject<Item> SNOWBALLERTAG = ITEMS.register("snowballertag", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.snowballertag").withStyle(ChatFormatting.BLUE)));
-    public static final RegistryObject<Item> GIFTERTAG = ITEMS.register("giftertag", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.giftertag").withStyle(ChatFormatting.BLUE)));
-    public static final RegistryObject<Item> ZAPPERTAG = ITEMS.register("zappertag", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.zappertag").withStyle(ChatFormatting.BLUE)));
-    public static final RegistryObject<Item> BRAWLERTAG = ITEMS.register("brawlertag", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.brawlertag").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> LESSERANIMATIONCORE = ITEMS.register("lesseranimationcore", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.lesseranimationcoredesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> BLANKSIGIL = ITEMS.register("blanksigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.blanksigildesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> GUNNERSIGIL = ITEMS.register("gunnersigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.gunnersigildesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> STABBERSIGIL = ITEMS.register("stabbersigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.stabbersigildesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> SNOWBALLERSIGIL = ITEMS.register("snowballersigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.snowballersigildesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> GIFTERSIGIL = ITEMS.register("giftersigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.giftersigildesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> ZAPPERSIGIL = ITEMS.register("zappersigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.zappersigildesc").withStyle(ChatFormatting.BLUE)));
+    public static final RegistryObject<Item> BRAWLERSIGIL = ITEMS.register("brawlersigil", () -> new LoreItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), new TranslatableComponent("item.frozensentinel.brawlersigildesc").withStyle(ChatFormatting.BLUE)));
 
 
 

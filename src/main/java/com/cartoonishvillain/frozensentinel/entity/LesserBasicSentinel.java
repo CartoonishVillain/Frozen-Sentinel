@@ -1,6 +1,7 @@
 package com.cartoonishvillain.frozensentinel.entity;
 
 import com.cartoonishvillain.frozensentinel.Register;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -19,7 +20,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import java.awt.*;
 
 public class LesserBasicSentinel extends GenericSentinel implements RangedAttackMob {
 
@@ -67,22 +67,22 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
         if(nameComponent != null) {name = nameComponent.getText();}
         else {name = "";}
         if(this.getOwner() instanceof Player && !level.isClientSide)
-        if(item.equals(Register.GUNNERTAG.get())){
+        if(item.equals(Register.GUNNERSIGIL.get())){
             this.transferData(new LesserGunnerSentinel(Register.LESSERGUNNERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
-        } else if(item.equals(Register.STABBERTAG.get())){
+        } else if(item.equals(Register.STABBERSIGIL.get())){
             this.transferData(new LesserStabberSentinel(Register.LESSERSTABBERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
-        } else if(item.equals(Register.SNOWBALLERTAG.get())){
+        } else if(item.equals(Register.SNOWBALLERSIGIL.get())){
             this.transferData(new LesserSnowballerSentinel(Register.LESSERSNOWBALLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
-        } else if(item.equals(Register.GIFTERTAG.get())){
+        } else if(item.equals(Register.GIFTERSIGIL.get())){
             this.transferData(new LesserGifterSentinel(Register.LESSERGIFTERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
-        } else if(item.equals(Register.ZAPPERTAG.get())){
+        } else if(item.equals(Register.ZAPPERSIGIL.get())){
             this.transferData(new LesserZapperSentinel(Register.LESSERZAPPERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
-        } else if(item.equals(Register.BRAWLERTAG.get())){
+        } else if(item.equals(Register.BRAWLERSIGIL.get())){
             this.transferData(new LesserBrawlerSentinel(Register.LESSERBRAWLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
         }

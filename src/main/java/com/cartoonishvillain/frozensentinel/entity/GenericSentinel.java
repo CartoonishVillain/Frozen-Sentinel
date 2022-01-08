@@ -50,7 +50,7 @@ public class GenericSentinel extends TamableAnimal {
 
     public boolean isAttackingFriend(LivingEntity target) {
         if (target == null) return false;
-        return this.getOwner() != null && !(target.equals(getOwner())) && target instanceof TamableAnimal && this.getOwner().equals(((TamableAnimal) target).getOwner());
+        return (this.getOwner() != null && target instanceof TamableAnimal && this.getOwner().equals(((TamableAnimal) target).getOwner())) || target.equals(getOwner());
     }
 
     @Override
