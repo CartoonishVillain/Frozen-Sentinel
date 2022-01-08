@@ -28,7 +28,7 @@ public class LesserZapperSentinel extends GenericSentinel {
         super.registerGoals();
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PathfinderMob.class, 6.0F, 0.75D, 1.5D, this::avoid));
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.8D, this::avoid));
-        this.goalSelector.addGoal(5, new CustomMeleeAttackGoal(this, 0.75D, false));
+        this.goalSelector.addGoal(5, new CustomMeleeAttackGoal(this, 1D, false));
 
     }
 
@@ -47,8 +47,8 @@ public class LesserZapperSentinel extends GenericSentinel {
 
     public static AttributeSupplier.Builder customAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.2825D)
+                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
                 .add(Attributes.ATTACK_DAMAGE, 1D);
     }
 

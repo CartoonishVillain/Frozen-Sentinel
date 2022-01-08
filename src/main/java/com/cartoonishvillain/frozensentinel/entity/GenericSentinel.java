@@ -1,6 +1,6 @@
 package com.cartoonishvillain.frozensentinel.entity;
 
-import com.cartoonishvillain.frozensentinel.Register;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TextComponent;
@@ -17,11 +17,15 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
+
 
 public class GenericSentinel extends TamableAnimal {
 
@@ -34,21 +38,46 @@ public class GenericSentinel extends TamableAnimal {
         super.registerGoals();
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0D, 11.0F, 9.5F, false));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.targetSelector.addGoal(1, new CustomOwnerHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new CustomOwnerHurtTargetGoal(this));
+        this.targetSelector.addGoal(3, new CustomHurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Monster.class, false));
+    }
+
+    public boolean isAttackingFriend(LivingEntity target) {
+        return this.getOwner() != null && !(target.equals(getOwner())) && target instanceof TamableAnimal && this.getOwner().equals(((TamableAnimal) target).getOwner());
     }
 
     @Override
     public InteractionResult mobInteract(Player p_27584_, InteractionHand p_27585_) {
-        if(!isTame()) {
+        if(!isTame() && p_27585_.equals(InteractionHand.MAIN_HAND) && !p_27584_.level.isClientSide) {
             tame(p_27584_);
-            p_27584_.sendMessage(new TextComponent("I am tamed now."), p_27584_.getUUID());
+            p_27584_.sendMessage(new TextComponent("[Summoned Snowman] I am tamed now."), p_27584_.getUUID());
+        }
+
+        if(p_27585_.equals(InteractionHand.MAIN_HAND) && !p_27584_.level.isClientSide){
+            ItemStack itemStack = p_27584_.getItemInHand(p_27585_);
+            float heal = 0;
+            boolean validHeal = false;
+            if(itemStack.getItem().equals(Items.SNOW_BLOCK)){heal = 1f; validHeal = true;}
+            else if(itemStack.getItem().equals(Items.ICE)){heal = 5f; validHeal = true;}
+            else if(itemStack.getItem().equals(Items.PACKED_ICE)){heal = 10f; validHeal = true;}
+            else if(itemStack.getItem().equals(Items.BLUE_ICE)){heal = this.getMaxHealth(); validHeal = true;}
+            else {
+                this.setOrderedToSit(!isOrderedToSit());
+                if(isOrderedToSit()){
+                    p_27584_.displayClientMessage(new TextComponent("Holding position...").withStyle(ChatFormatting.AQUA), true);
+                } else {
+                    p_27584_.displayClientMessage(new TextComponent("Following").withStyle(ChatFormatting.AQUA), true);
+                }
+            }
+
+            if (validHeal) {itemStack.shrink(1);}
+            this.heal(heal);
         }
 
         return super.mobInteract(p_27584_, p_27585_);
@@ -58,7 +87,7 @@ public class GenericSentinel extends TamableAnimal {
         return null;
     }
 
-    @Nullable
+
     @Override
     public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
         return null;
@@ -91,13 +120,12 @@ public class GenericSentinel extends TamableAnimal {
         return new Vec3(sentinel.getX(), sentinel.getY(), sentinel.getZ());
     }
 
-    @Nullable
+
     @Override
     protected SoundEvent getHurtSound(DamageSource p_21239_) {
         return SoundEvents.SNOW_GOLEM_HURT;
     }
 
-    @Nullable
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.SNOW_GOLEM_DEATH;

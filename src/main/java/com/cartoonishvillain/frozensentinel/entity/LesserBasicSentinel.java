@@ -16,6 +16,7 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 import java.awt.*;
@@ -36,8 +37,8 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
 
     public static AttributeSupplier.Builder customAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.2825D)
+                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
                 .add(Attributes.ATTACK_DAMAGE, 2D);
     }
 
@@ -58,7 +59,9 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
 
     @Override
     public InteractionResult mobInteract(Player p_27584_, InteractionHand p_27585_) {
+        boolean shrinkStack = false;
         Item item = p_27584_.getItemInHand(p_27585_).getItem();
+        ItemStack stack = p_27584_.getItemInHand(p_27585_);
         TextComponent nameComponent = (TextComponent) this.getCustomName();
         String name;
         if(nameComponent != null) {name = nameComponent.getText();}
@@ -66,17 +69,24 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
         if(this.getOwner() instanceof Player && !level.isClientSide)
         if(item.equals(Register.GUNNERTAG.get())){
             this.transferData(new LesserGunnerSentinel(Register.LESSERGUNNERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+            shrinkStack = true;
         } else if(item.equals(Register.STABBERTAG.get())){
             this.transferData(new LesserStabberSentinel(Register.LESSERSTABBERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+            shrinkStack = true;
         } else if(item.equals(Register.SNOWBALLERTAG.get())){
             this.transferData(new LesserSnowballerSentinel(Register.LESSERSNOWBALLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+            shrinkStack = true;
         } else if(item.equals(Register.GIFTERTAG.get())){
             this.transferData(new LesserGifterSentinel(Register.LESSERGIFTERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+            shrinkStack = true;
         } else if(item.equals(Register.ZAPPERTAG.get())){
             this.transferData(new LesserZapperSentinel(Register.LESSERZAPPERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+            shrinkStack = true;
         } else if(item.equals(Register.BRAWLERTAG.get())){
             this.transferData(new LesserBrawlerSentinel(Register.LESSERBRAWLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
+            shrinkStack = true;
         }
+        if (shrinkStack) {stack.shrink(1);}
         return super.mobInteract(p_27584_, p_27585_);
     }
 }

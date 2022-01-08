@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.level.Level;
 
@@ -26,15 +27,13 @@ public class LesserStabberSentinel extends GenericSentinel {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(5, new LeapAtTargetGoal(this, 1f));
-
-
+        this.goalSelector.addGoal(5, new LeapAtTargetGoal(this, 0.4F));
     }
 
     public static AttributeSupplier.Builder customAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.2825D)
+                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
                 .add(Attributes.ATTACK_DAMAGE, 2D);
     }
 

@@ -35,7 +35,7 @@ public class ForgeBusEvents {
                 else {level.sendParticles(ParticleTypes.HEART, pos.getX() + event.getWorld().getRandom().nextDouble(), pos.getY() + event.getWorld().getRandom().nextDouble(), pos.getZ() + event.getWorld().getRandom().nextDouble(), 10, 0.5, 0.5, 0.5, 0);}
             }
             event.getWorld().playSound(null, pos, SoundEvents.ZOMBIE_VILLAGER_CURE, SoundSource.NEUTRAL, 0.5f, 0.5f);
-
+            event.getItemStack().shrink(1);
         }
     }
 }
