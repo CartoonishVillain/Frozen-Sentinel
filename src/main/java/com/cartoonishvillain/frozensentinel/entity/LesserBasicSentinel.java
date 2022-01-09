@@ -86,7 +86,10 @@ public class LesserBasicSentinel extends GenericSentinel implements RangedAttack
             this.transferData(new LesserBrawlerSentinel(Register.LESSERBRAWLERSENTINEL.get(), this.level), name, this.getHealth(), getRealPos(this), (Player) this.getOwner());
             shrinkStack = true;
         }
-        if (shrinkStack) {stack.shrink(1);}
+        if (shrinkStack) {
+            stack.shrink(1);
+            return InteractionResult.CONSUME;
+        }
         return super.mobInteract(p_27584_, p_27585_);
     }
 }
