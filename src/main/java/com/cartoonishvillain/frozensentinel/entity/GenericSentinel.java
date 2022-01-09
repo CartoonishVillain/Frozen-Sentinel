@@ -69,11 +69,13 @@ public class GenericSentinel extends TamableAnimal {
             else if(itemStack.getItem().equals(Items.PACKED_ICE)){heal = 10f; validHeal = true;}
             else if(itemStack.getItem().equals(Items.BLUE_ICE)){heal = this.getMaxHealth(); validHeal = true;}
             else {
-                this.setOrderedToSit(!isOrderedToSit());
-                if(isOrderedToSit()){
-                    p_27584_.displayClientMessage(new TextComponent("Holding position...").withStyle(ChatFormatting.AQUA), true);
-                } else {
-                    p_27584_.displayClientMessage(new TextComponent("Following").withStyle(ChatFormatting.AQUA), true);
+                if(p_27584_.equals(this.getOwner())) {
+                    this.setOrderedToSit(!isOrderedToSit());
+                    if (isOrderedToSit()) {
+                        p_27584_.displayClientMessage(new TextComponent("Holding position...").withStyle(ChatFormatting.AQUA), true);
+                    } else {
+                        p_27584_.displayClientMessage(new TextComponent("Following").withStyle(ChatFormatting.AQUA), true);
+                    }
                 }
             }
 
